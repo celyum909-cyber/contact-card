@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0E1E33">
+<meta name="description" content="Angela Reed, REALTOR® with Signature Real Estate Group. Henderson, Las Vegas and Boulder City. Call 702-372-3783.">
+<meta property="og:title" content="Angela Reed · Signature Real Estate Group">
+<meta property="og:description" content="REALTOR® serving Henderson, Las Vegas and Boulder City. Tap to call, text, email or save my contact.">
+<meta property="og:image" content="icon-512.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Angela Reed">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" href="favicon.png">
+</head>
+<body>
+<title>Angela Reed</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Playfair+Display:wght@500&display=swap">
+<style>
+/* Layout: the card artwork is the page; invisible tap zones sit over each printed button. Single navy/cream look by design. */
+:root{
+  --navy:#0E1E33; --navy-2:#16294A; --cream:#FAF6EE; --line:#E6DCC8;
+  --gold:#C9A05A; --gold-deep:#9C7330; --ink:#0E1E33; --ink-soft:#5A6475;
+  --serif:"Playfair Display", Georgia, "Times New Roman", serif;
+  --sans:"Montserrat", "Helvetica Neue", Arial, sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0}
+body{background:radial-gradient(120% 80% at 50% 0%, var(--navy-2), var(--navy));color:var(--ink);font-family:var(--sans);min-height:100vh;-webkit-font-smoothing:antialiased}
+.stage{display:flex;justify-content:center;padding:0}
+@media (min-width:520px){.stage{padding-block:28px}}
+.card{position:relative;width:100%;max-width:470px;line-height:0;box-shadow:0 30px 80px -20px rgba(0,0,0,.6)}
+@media (min-width:520px){.card{border-radius:22px;overflow:hidden}}
+.card img{width:100%;height:auto;display:block;max-width:100%}
+.hs{position:absolute;display:block;border:0;background:transparent;padding:0;cursor:pointer;border-radius:14px;-webkit-tap-highlight-color:transparent;transition:background .15s, box-shadow .15s}
+.hs.round{border-radius:50% 50% 18px 18px}
+.hs:hover{background:rgba(201,160,90,.10)}
+.hs:active{background:rgba(201,160,90,.22)}
+.hs:focus-visible{outline:none;box-shadow:0 0 0 3px var(--gold)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* Bottom sheets */
+.scrim{position:fixed;inset:0;z-index:50;background:rgba(8,16,28,.55);display:flex;align-items:flex-end;justify-content:center}
+.sheet{width:100%;max-width:470px;max-height:92vh;overflow:auto;background:var(--cream);border-radius:22px 22px 0 0;padding:10px 22px calc(24px + env(safe-area-inset-bottom,0px));line-height:1.5;animation:up .28s ease-out}
+@keyframes up{from{transform:translateY(40px);opacity:.4}to{transform:none;opacity:1}}
+@media (prefers-reduced-motion:reduce){.sheet{animation:none}}
+.grab{width:42px;height:4px;border-radius:4px;background:var(--line);margin:0 auto 12px}
+.sheet-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.sheet h2{font-family:var(--serif);font-weight:500;font-size:26px;margin:0}
+.x{border:0;background:none;font-size:30px;line-height:1;color:var(--ink-soft);cursor:pointer;padding:4px 6px}
+.eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-deep);font-weight:600;margin:18px 0 8px;display:flex;align-items:center;gap:10px}
+.eyebrow::after{content:"";flex:1;height:1px;background:var(--line)}
+.qrbox{display:grid;justify-items:center;gap:10px;padding:16px;background:#fff;border:1px solid var(--line);border-radius:16px}
+.qrbox #qr{width:200px;height:200px;padding:10px;border:2px solid var(--gold);border-radius:10px;background:#fff;line-height:0}
+.qrbox #qr img,.qrbox #qr canvas{width:100%!important;height:auto!important}
+.qrbox p{margin:0;font-size:13px;color:var(--ink-soft);text-align:center}
+.url{font-size:12px;word-break:break-all;color:var(--ink-soft);text-align:center}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.btn{display:flex;align-items:center;justify-content:center;gap:10px;min-height:50px;border-radius:14px;border:1px solid var(--navy);background:var(--navy);color:var(--cream);font:600 14px var(--sans);letter-spacing:.04em;cursor:pointer;text-decoration:none;padding:10px 16px;width:100%}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--gold)}
+.btn svg{color:var(--gold);flex:none}
+.install{display:flex;gap:14px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px}
+.install img{width:56px;height:56px;border-radius:14px;flex:none}
+.install b{display:block;font-size:15px}
+.install .steps{font-size:13.5px;color:var(--ink-soft);margin-top:2px}
+.install .btn{margin-top:10px;min-height:44px}
+.inline-ic{display:inline-block;width:16px;height:16px;vertical-align:-3px}
+form{display:grid;gap:10px;margin-top:12px}
+label.f{display:grid;gap:4px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);font-weight:600}
+label.f input,label.f select,label.f textarea{font:16px var(--sans);letter-spacing:0;text-transform:none;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px;width:100%;min-width:0}
+label.f textarea{min-height:80px;resize:vertical}
+label.f :focus{outline:none;border-color:var(--gold)}
+.err{color:#A3361F;font-size:13px}
+pre.req{white-space:pre-wrap;font:13px/1.5 var(--sans);background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px;margin:10px 0 0}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:80;background:var(--navy);color:var(--cream);border:1px solid var(--gold);border-radius:999px;padding:10px 18px;font-size:13px;line-height:1.3}
+</style>
+
+<main class="stage">
+  <div class="card">
+    <img src="card.jpg" width="941" height="1672" alt="Angela Reed, REALTOR® with Signature Real Estate Group, serving Henderson, Las Vegas and Boulder City. Mobile 702-372-3783, office 702-939-0000. 2200 Paseo Verde Pkwy, Suite 300, Henderson, NV 89052. License S.0176481.">
+    <a class="hs" id="saveBtn" href="angela-reed.vcf" style="left:5.53%;top:48.56%;width:89.05%;height:6.82%"><span class="sr">Save my contact</span></a>
+    <a class="hs round" href="tel:+17023723783" style="left:8.5%;top:56.82%;width:14.03%;height:10.29%"><span class="sr">Call Angela</span></a>
+    <a class="hs round" href="sms:+17023723783" style="left:31.24%;top:56.82%;width:14.03%;height:10.29%"><span class="sr">Text Angela</span></a>
+    <a class="hs round" href="mailto:AngelaHReed@gmail.com" style="left:54.52%;top:56.82%;width:14.03%;height:10.29%"><span class="sr">Email Angela</span></a>
+    <button class="hs round" id="shareBtn" type="button" style="left:77.36%;top:56.82%;width:14.03%;height:10.29%"><span class="sr">Share this card</span></button>
+    <a class="hs" href="tel:+17023723783" style="left:7.44%;top:68.18%;width:38.26%;height:4.9%"><span class="sr">Call mobile 702-372-3783</span></a>
+    <a class="hs" href="tel:+17029390000" style="left:54.41%;top:68.66%;width:38.26%;height:4.9%"><span class="sr">Call office 702-939-0000</span></a>
+    <a class="hs" id="listingsBtn" href="#" target="_blank" rel="noopener" style="left:5.31%;top:78.59%;width:89.48%;height:5.38%"><span class="sr">View my listings</span></a>
+    <button class="hs" id="consultBtn" type="button" style="left:5.31%;top:84.57%;width:89.48%;height:5.38%"><span class="sr">Request a consultation</span></button>
+    <a class="hs" href="https://www.google.com/maps/search/?api=1&amp;query=2200+Paseo+Verde+Pkwy+Suite+300,+Henderson,+NV+89052" target="_blank" rel="noopener" style="left:23.91%;top:91.39%;width:53.14%;height:4.19%"><span class="sr">Office location on Google Maps</span></a>
+  </div>
+</main>
+
+<!-- Share sheet: QR code, share/copy, install -->
+<div class="scrim" id="shareSheet" hidden>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="shareTitle">
+    <div class="grab"></div>
+    <div class="sheet-head"><h2 id="shareTitle">Share my card</h2><button class="x" data-close aria-label="Close">&times;</button></div>
+    <div class="eyebrow">Scan to open</div>
+    <div class="qrbox">
+      <div id="qr" role="img" aria-label="QR code that opens this card"></div>
+      <p>Hold a phone camera over the code to open Angela's card.</p>
+      <div class="url" id="cardUrl"></div>
+    </div>
+    <div class="row">
+      <button class="btn" id="nativeShare" type="button" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12M7 8l5-5 5 5"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg>Send card</button>
+      <button class="btn ghost" id="copyLink" type="button"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></svg>Copy link</button>
+    </div>
+    <div class="eyebrow">Add to your phone</div>
+    <div class="install">
+      <img src="icon-192.png" alt="">
+      <div>
+        <b>Keep Angela's card on your home screen</b>
+        <div class="steps" id="installSteps"></div>
+        <button class="btn" id="installBtn" type="button" hidden>Add to Home Screen</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Consultation sheet -->
+<div class="scrim" id="consultSheet" hidden>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="consultTitle">
+    <div class="grab"></div>
+    <div class="sheet-head"><h2 id="consultTitle">Request a consultation</h2><button class="x" data-close aria-label="Close">&times;</button></div>
+    <form id="consultForm" novalidate>
+      <label class="f" for="cName">Name<input id="cName" autocomplete="name" required></label>
+      <label class="f" for="cContact">Phone or email<input id="cContact" autocomplete="tel" required></label>
+      <label class="f" for="cTopic">I'm interested in<select id="cTopic"><option>Buying a home</option><option>Selling a home</option><option>Buying and selling</option><option>A home valuation</option><option>Just exploring</option></select></label>
+      <label class="f" for="cWhen">Best time to reach me<select id="cWhen"><option>Anytime</option><option>Morning</option><option>Afternoon</option><option>Evening</option></select></label>
+      <label class="f" for="cMsg">Notes (optional)<textarea id="cMsg" placeholder="Neighborhoods, timing, price range…"></textarea></label>
+      <div class="err" id="cErr" hidden></div>
+      <button class="btn" type="submit">Prepare my request</button>
+    </form>
+    <div id="cReady" hidden>
+      <p style="margin:12px 0 0">Your request is ready. Send it to Angela by text or email.</p>
+      <pre class="req" id="cText"></pre>
+      <div class="row">
+        <a class="btn" id="cSms" href="#">Text Angela</a>
+        <a class="btn" id="cMail" href="#">Email Angela</a>
+      </div>
+      <div class="row">
+        <button class="btn ghost" id="cCopy" type="button">Copy request</button>
+        <button class="btn ghost" id="cEdit" type="button">Edit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast" hidden></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+(function(){
+  // ---- Settings you can change ----
+  var CARD_URL = '';  // the card's public web address; leave blank to use this page's own address
+  var LISTINGS_URL = 'https://www.redfin.com/NV/Henderson/1692-Tangiers-Dr-89012/home/33536664';
+  var PHONE = '+17023723783', EMAIL = 'AngelaHReed@gmail.com';
+  // ----------------------------------
+
+  var $ = function(s){ return document.querySelector(s); };
+  var url = CARD_URL || location.href.split('#')[0];
+  $('#listingsBtn').href = LISTINGS_URL;
+
+  function toast(t){ var el=$('#toast'); el.textContent=t; el.hidden=false; clearTimeout(toast.t); toast.t=setTimeout(function(){ el.hidden=true; },2000); }
+  function copy(text, msg){
+    function fb(){ var t=document.createElement('textarea'); t.value=text; document.body.appendChild(t); t.select(); try{ document.execCommand('copy'); toast(msg); }catch(e){ toast('Press and hold to copy'); } t.remove(); }
+    try{ navigator.clipboard.writeText(text).then(function(){ toast(msg); }, fb); }catch(e){ fb(); }
+  }
+
+  // Sheets
+  var lastFocus=null;
+  function open(id){ lastFocus=document.activeElement; var s=$(id); s.hidden=false; document.body.style.overflow='hidden'; var x=s.querySelector('[data-close]'); x && x.focus(); }
+  function close(s){ s.hidden=true; document.body.style.overflow=''; lastFocus && lastFocus.focus && lastFocus.focus(); }
+  document.querySelectorAll('.scrim').forEach(function(s){
+    s.addEventListener('click', function(e){ if(e.target===s || e.target.closest('[data-close]')) close(s); });
+  });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') document.querySelectorAll('.scrim').forEach(function(s){ if(!s.hidden) close(s); }); });
+
+  // Share sheet + QR (made on first open)
+  var qrMade=false;
+  $('#shareBtn').addEventListener('click', function(){
+    if(!qrMade && window.QRCode){
+      new QRCode($('#qr'), { text:url, width:360, height:360, colorDark:'#0E1E33', colorLight:'#ffffff', correctLevel:QRCode.CorrectLevel.M });
+      qrMade=true;
+    }
+    $('#cardUrl').textContent = url;
+    open('#shareSheet');
+  });
+  if(navigator.share){
+    $('#nativeShare').hidden=false;
+    $('#nativeShare').addEventListener('click', function(){
+      navigator.share({ title:'Angela Reed · Signature Real Estate Group', text:'Angela Reed, REALTOR® · 702-372-3783', url:url }).catch(function(){});
+    });
+  } else { $('#copyLink').parentNode.style.gridTemplateColumns='1fr'; }
+  $('#copyLink').addEventListener('click', function(){ copy(url,'Link copied'); });
+
+  // Install to home screen
+  if('serviceWorker' in navigator){ window.addEventListener('load', function(){ navigator.serviceWorker.register('sw.js').catch(function(){}); }); }
+  var ua=navigator.userAgent||'';
+  var isIOS=/iPhone|iPad|iPod/.test(ua) || (navigator.platform==='MacIntel' && navigator.maxTouchPoints>1);
+  var isAndroid=/Android/.test(ua);
+  var installed=matchMedia('(display-mode: standalone)').matches || navigator.standalone===true;
+  var steps=$('#installSteps'), ib=$('#installBtn'), deferred=null;
+  var shareIc='<svg class="inline-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12M7 8l5-5 5 5"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg>';
+  if(installed){ steps.textContent="It's already on this phone. You're using it now."; }
+  else if(isIOS){ steps.innerHTML='In Safari, tap '+shareIc+' <b>Share</b>, then <b>Add to Home Screen</b>.'; }
+  else if(isAndroid){ steps.innerHTML='Tap the <b>&#8942;</b> menu at the top right, then <b>Add to Home screen</b> or <b>Install app</b>.'; }
+  else { steps.textContent='Open this card on your phone, then come back here to add it to your home screen.'; }
+  window.addEventListener('beforeinstallprompt', function(e){ e.preventDefault(); deferred=e; steps.textContent='One tap puts her card next to your apps. No app store needed.'; ib.hidden=false; });
+  ib.addEventListener('click', function(){ if(!deferred) return; deferred.prompt(); deferred.userChoice.then(function(c){ deferred=null; ib.hidden=true; if(c && c.outcome==='accepted') steps.textContent='Added. Look for Angela Reed on your home screen.'; }); });
+  window.addEventListener('appinstalled', function(){ ib.hidden=true; steps.textContent='Added. Look for Angela Reed on your home screen.'; });
+
+  // Save contact: plain .vcf link on a real site; inside a Claude preview, use its download capability
+  var dl=null;
+  try{ if(window.claude && window.claude.use){ window.claude.use('downloads').then(function(d){ dl=d; }); } }catch(e){}
+  $('#saveBtn').addEventListener('click', function(e){
+    if(!dl) return;
+    e.preventDefault();
+    fetch('angela-reed.vcf').then(function(r){ return r.text(); })
+      .then(function(t){ return dl.save({ filename:'angela-reed.vcf', data:t }); })
+      .catch(function(){ toast('Contact file could not be saved here'); });
+  });
+
+  // Consultation request
+  $('#consultBtn').addEventListener('click', function(){ open('#consultSheet'); setTimeout(function(){ $('#cName').focus(); },300); });
+  $('#consultForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    var n=$('#cName').value.trim(), c=$('#cContact').value.trim(), err=$('#cErr');
+    if(!n || !c){ err.textContent='Please add your name and a phone number or email.'; err.hidden=false; return; }
+    err.hidden=true;
+    var m=$('#cMsg').value.trim();
+    var body='Hi Angela, I would like to set up a consultation.\n\nName: '+n+'\nContact: '+c+'\nInterested in: '+$('#cTopic').value+'\nBest time: '+$('#cWhen').value+(m?'\nNotes: '+m:'');
+    $('#cText').textContent=body;
+    $('#cSms').href='sms:'+PHONE+'?&body='+encodeURIComponent(body);
+    $('#cMail').href='mailto:'+EMAIL+'?subject='+encodeURIComponent('Consultation request from '+n)+'&body='+encodeURIComponent(body);
+    $('#consultForm').hidden=true; $('#cReady').hidden=false;
+  });
+  $('#cCopy').addEventListener('click', function(){ copy($('#cText').textContent,'Request copied'); });
+  $('#cEdit').addEventListener('click', function(){ $('#cReady').hidden=true; $('#consultForm').hidden=false; });
+})();
+</script>
+
+</body>
+</html>
